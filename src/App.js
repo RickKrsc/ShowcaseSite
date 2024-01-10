@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import NavbarComponent from './NavbarComponent';
+import Home from './Home';
+import Reviews from './Reviews'
+import Contacts from './Contacts';
+import MobileNavbarComponent from './MobileNavbar';
+import { useMediaQuery } from 'react-responsive';
+
 
 function App() {
+
+  const isMobile = useMediaQuery({ maxWidth: 480 });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* Il componente NavbarComponent verrà visualizzato per schermi più grandi */}
+      {!isMobile && <NavbarComponent />}
+
+      {/* Il componente MobileNavbarComponent verrà visualizzato solo per schermi più piccoli */}
+      {isMobile && <MobileNavbarComponent />}
+      <div id='homepage' className="home-page">
+        <div className='justify-content-left '>
+          <p id='slogan'> Lorem ipsum <br /> sed necatur hec filim. </p>
+        </div>
+      </div>
+      <Home/>
+      <Reviews />
+      <Contacts />
     </div>
   );
 }
